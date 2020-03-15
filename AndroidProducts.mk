@@ -14,10 +14,10 @@
 # limitations under the License.
 #
 
-ifneq ($(RR_BUILD),)
-    PRODUCT_MAKEFILES += \
-        $(LOCAL_DIR)/rr_kccat6.mk
-else
-    PRODUCT_MAKEFILES += \
-        $(LOCAL_DIR)/lineage_kccat6.mk
-endif
+PRODUCT_MAKEFILES += \
+    $(LOCAL_DIR)/lineage_kccat6.mk
+
+COMMON_LUNCH_CHOICES := \
+    lineage_kccat6-user \
+    lineage_kccat6-userdebug \
+    lineage_kccat6-eng
