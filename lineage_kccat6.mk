@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2016 The Sayanogen Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2017-2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +12,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-$(call inherit-product, device/samsung/kccat6/full_kccat6.mk)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit common Lineage phone.
+# Inherit common LineageOS phone.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-PRODUCT_DEVICE := kccat6
+# Inherit from kccat6 device
+$(call inherit-product, device/samsung/kccat6/device.mk)
+
+# Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := lineage_kccat6
+PRODUCT_DEVICE := kccat6
+PRODUCT_BRAND := samsung
+PRODUCT_MANUFACTURER := samsung
+PRODUCT_MODEL := SM-G901F
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+	PRODUCT_NAME=kccat6xx \
+	TARGET_DEVICE=kccat6 \
+	PRIVATE_BUILD_DESC="kccat6xx-user 6.0.1 MMB29M G901FXXU1CRH1 release-keys"
+
+BUILD_FINGERPRINT := "samsung/kccat6xx/kccat6:6.0.1/MMB29M/G901FXXU1CRH1:user/release-keys"
